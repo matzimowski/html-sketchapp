@@ -1,7 +1,7 @@
 import Base from './base';
 
 class SymbolInstance extends Base {
-  constructor({x, y, width, height, symbolID, id}) {
+  constructor({x, y, width, height, symbolID, id, overrideValues = []}) {
     super({id});
     this._class = 'symbolInstance';
     this._x = x;
@@ -9,10 +9,15 @@ class SymbolInstance extends Base {
     this._width = width;
     this._height = height;
     this._symbolID = symbolID;
+    this._overrideValues = overrideValues;
   }
 
   setId(id) {
     this._symbolID = id;
+  }
+
+  setOverrideValues(value) {
+    this._overrideValues.push(value);
   }
 
   toJSON() {
@@ -35,6 +40,7 @@ class SymbolInstance extends Base {
     };
 
     obj.symbolID = this._symbolID;
+    obj.overrideValues = this._overrideValues;
 
     return obj;
   }
