@@ -18,6 +18,7 @@ class SymbolMaster extends Base {
     this._height = height;
     this._symbolID = generateID();
     this._groupLayout = getGroupLayout();
+    this._overrideValues = [];
   }
 
   setId(id) {
@@ -32,6 +33,10 @@ class SymbolMaster extends Base {
     height = height === null ? masterHeight : height;
 
     return new SymbolInstance({x, y, width, height, symbolID: this._symbolID});
+  }
+
+  setOverrideValues(value) {
+    this._overrideValues.push(value);
   }
 
   addLayer(layer) {
@@ -117,6 +122,8 @@ class SymbolMaster extends Base {
     obj.symbolID = this._symbolID;
     obj.changeIdentifier = 0;
     obj.groupLayout = this._groupLayout;
+    obj.groupLayout = this._groupLayout;
+    obj.overrideValues = this._overrideValues;
 
     return obj;
   }
