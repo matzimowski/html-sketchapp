@@ -19,6 +19,7 @@ class SymbolMaster extends Base {
     this._symbolID = generateID();
     this._groupLayout = getGroupLayout();
     this._overrideValues = [];
+    this._allowsOverrides = false;
   }
 
   setId(id) {
@@ -37,6 +38,10 @@ class SymbolMaster extends Base {
 
   setOverrideValues(value) {
     this._overrideValues.push(value);
+  }
+
+  setAllowsOverrides(value) {
+    this._allowsOverrides = value;
   }
 
   addLayer(layer) {
@@ -124,6 +129,7 @@ class SymbolMaster extends Base {
     obj.groupLayout = this._groupLayout;
     obj.groupLayout = this._groupLayout;
     obj.overrideValues = this._overrideValues;
+    obj.allowsOverrides = this._allowsOverrides;
 
     return obj;
   }
