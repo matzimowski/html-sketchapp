@@ -58,6 +58,7 @@ class TextStyle {
     textDecoration,
     textAlign,
     skipSystemFonts,
+    opacity,
   }) {
     this._color = color;
     this._fontSize = fontSize;
@@ -68,6 +69,7 @@ class TextStyle {
     this._textTransform = textTransform;
     this._textDecoration = textDecoration;
     this._textAlign = textAlign;
+    this._opacity = opacity;
   }
 
   toJSON() {
@@ -79,6 +81,7 @@ class TextStyle {
       'lineHeight': this._lineHeight,
       'textDecoration': this._textDecoration,
       'textAlign': this._textAlign,
+      'opacity': this._opacity,
     };
 
     if (this._letterSpacing !== undefined) {

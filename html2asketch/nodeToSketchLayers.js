@@ -298,6 +298,7 @@ export default function nodeToSketchLayers(node, options) {
     textDecoration: textDecorationLine,
     textAlign: display === 'flex' || display === 'inline-flex' ? justifyContent : textAlign,
     skipSystemFonts: options && options.skipSystemFonts,
+    opacity: opacity || options.layerOpacity !== false,
   });
 
   const rangeHelper = document.createRange();

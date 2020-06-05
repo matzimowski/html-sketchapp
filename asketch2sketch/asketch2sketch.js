@@ -75,17 +75,26 @@ function removeSharedLayerStyles(document) {
 function addSharedTextStyle(document, style) {
   const container = context.document.documentData().layerTextStyles();
 
+  console.log('addSharedTextStyle', style);
+  console.log('addSharedLayerStyle container', container);
+  console.log('addSharedLayerStyle style.value fromSJSONDictionary', fromSJSONDictionary(style.value));
+
   if (container.addSharedStyleWithName_firstInstance) {
+    console.log('1');
     container.addSharedStyleWithName_firstInstance(style.name, fromSJSONDictionary(style.value));
   } else {
+    console.log('2');
     let sharedStyle;
     const allocator = MSSharedStyle.alloc();
 
     if (allocator.initWithName_firstInstance) {
+      console.log('3');
       sharedStyle = allocator.initWithName_firstInstance(style.name, fromSJSONDictionary(style.value));
     } else {
+      console.log('4');
       sharedStyle = allocator.initWithName_style(style.name, fromSJSONDictionary(style.value));
     }
+    console.log('5');
     container.addSharedObject(sharedStyle);
   }
 }
@@ -140,8 +149,10 @@ export default function asketch2sketch(context, asketchFiles, options = {removeS
     }
 
     if (asketchDocument.layerTextStyles && asketchDocument.layerTextStyles.objects) {
+      console.log('asketchDocument.layerStyles.objects', asketchDocument.layerTextStyles.objects);
       asketchDocument.layerTextStyles.objects.forEach(style => {
         fixSharedTextStyle(style);
+        console.log('style', style);
         addSharedTextStyle(document, style);
       });
 
